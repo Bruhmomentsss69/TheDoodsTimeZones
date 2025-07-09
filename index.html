@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Friends Time Zones</title>
   <style>
     :root {
@@ -32,6 +32,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
+      position: relative;
     }
 
     @supports (font-variation-settings: normal) {
@@ -63,7 +65,6 @@
       margin: 0 auto;
     }
 
-    /* UPDATED GRID TO 3x2 LAYOUT */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(300px, 1fr));
@@ -72,6 +73,7 @@
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
+      z-index: 1;
     }
 
     .timezone-card {
@@ -177,7 +179,6 @@
       margin-top: 0.5rem;
     }
 
-    /* Responsive adjustments */
     @media (max-width: 1024px) {
       .grid {
         grid-template-columns: repeat(2, 1fr);
@@ -191,6 +192,26 @@
         grid-template-columns: 1fr;
       }
     }
+
+    .falling-text {
+      position: fixed;
+      top: -50px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.08);
+      pointer-events: none;
+      animation: fall linear forwards;
+      white-space: nowrap;
+      user-select: none;
+      z-index: -1;
+      transform: rotate(0deg);
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -200,7 +221,6 @@
   </header>
 
   <div class="grid">
-    <!-- Row 1 -->
     <div class="timezone-card" data-timezone="America/New_York">
       <div class="card-header">
         <span class="location">Eastern Time</span>
@@ -264,7 +284,6 @@
       </div>
     </div>
 
-    <!-- Row 2 -->
     <div class="timezone-card" data-timezone="America/Los_Angeles">
       <div class="card-header">
         <span class="location">Pacific Time</span>
@@ -335,39 +354,34 @@
         const tz = card.dataset.timezone;
         const now = new Date();
         const options = { timeZone: tz };
-        
-        // Get time components
-        const timeStr = now.toLocaleTimeString('en-US', { 
-          ...options, 
-          hour12: true, 
-          hour: 'numeric', 
-          minute: '2-digit', 
-          second: '2-digit' 
-        });
-        
-        // Get date components
-        const dateStr = now.toLocaleDateString('en-US', { 
-          ...options, 
-          weekday: 'long', 
-          year: 'numeric', 
-          month: 'long', 
-          day: 'numeric' 
+
+        const timeStr = now.toLocaleTimeString('en-US', {
+          ...options,
+          hour12: true,
+          hour: 'numeric',
+          minute: '2-digit',
+          second: '2-digit'
         });
 
-        // Update digital display
+        const dateStr = now.toLocaleDateString('en-US', {
+          ...options,
+          weekday: 'long',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
         card.querySelector('.digital-time').textContent = timeStr;
         card.querySelector('.date').textContent = dateStr;
 
-        // Calculate angles for analog clock
         const hours = now.toLocaleTimeString('en-US', { ...options, hour: '2-digit', hour12: false }).split(':')[0];
         const minutes = now.getMinutes();
         const seconds = now.getSeconds();
-        
+
         const hourAngle = (360 / 12) * (hours % 12) + (360 / 12) * (minutes / 60);
         const minuteAngle = (360 / 60) * minutes;
         const secondAngle = (360 / 60) * seconds;
 
-        // Rotate hands
         card.querySelector('.hour-hand').style.transform = `translateX(-50%) rotate(${hourAngle}deg)`;
         card.querySelector('.minute-hand').style.transform = `translateX(-50%) rotate(${minuteAngle}deg)`;
         card.querySelector('.second-hand').style.transform = `translateX(-50%) rotate(${secondAngle}deg)`;
@@ -376,8 +390,43 @@
       requestAnimationFrame(updateClocks);
     }
 
-    // Initialize
     updateClocks();
+
+    // Falling "Your Blocked" Text (behind cards)
+    let fallingCount = 0;
+    const maxFalling = 25;
+
+    function createFallingText() {
+      if (fallingCount >= maxFalling) {
+        setTimeout(createFallingText, 500);
+        return;
+      }
+
+      const span = document.createElement('span');
+      span.classList.add('falling-text');
+      span.textContent = 'Your Blocked';
+
+      const left = Math.random() * 100;
+      const duration = 5 + Math.random() * 5;
+      const rotation = Math.floor(Math.random() * 360) - 180;
+
+      span.style.left = `${left}vw`;
+      span.style.animationDuration = `${duration}s`;
+      span.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
+      span.style.transform = `rotate(${rotation}deg)`;
+
+      document.body.appendChild(span);
+      fallingCount++;
+
+      setTimeout(() => {
+        span.remove();
+        fallingCount--;
+      }, duration * 1000);
+
+      setTimeout(createFallingText, 400 + Math.random() * 600);
+    }
+
+    createFallingText();
   </script>
 </body>
 </html>
