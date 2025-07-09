@@ -197,7 +197,7 @@
       position: fixed;
       top: -50px;
       font-size: 1rem;
-      color: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.15);
       pointer-events: none;
       animation: fall linear forwards;
       white-space: nowrap;
@@ -207,7 +207,14 @@
     }
 
     @keyframes fall {
-      to {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+      80% {
+        opacity: 1;
+      }
+      100% {
         transform: translateY(110vh) rotate(720deg);
         opacity: 0;
       }
@@ -222,129 +229,34 @@
 
   <div class="grid">
     <div class="timezone-card" data-timezone="America/New_York">
-      <div class="card-header">
-        <span class="location">Eastern Time</span>
-        <span class="flag">🇺🇸</span>
-      </div>
+      <div class="card-header"><span class="location">Eastern Time</span><span class="flag">🇺🇸</span></div>
       <div class="people">Donovan, Jordyn, Aaron, Sal</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">3:54:23 PM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">3:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
-
     <div class="timezone-card" data-timezone="Asia/Riyadh">
-      <div class="card-header">
-        <span class="location">Arabian Time</span>
-        <span class="flag">🇸🇦</span>
-      </div>
+      <div class="card-header"><span class="location">Arabian Time</span><span class="flag">🇸🇦</span></div>
       <div class="people">Yousef</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">10:54:23 PM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">10:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
-
     <div class="timezone-card" data-timezone="Europe/London">
-      <div class="card-header">
-        <span class="location">UK Time</span>
-        <span class="flag">🇬🇧</span>
-      </div>
+      <div class="card-header"><span class="location">UK Time</span><span class="flag">🇬🇧</span></div>
       <div class="people">Jackson, Hyper</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">8:54:23 PM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">8:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
-
     <div class="timezone-card" data-timezone="America/Los_Angeles">
-      <div class="card-header">
-        <span class="location">Pacific Time</span>
-        <span class="flag">🇺🇸</span>
-      </div>
+      <div class="card-header"><span class="location">Pacific Time</span><span class="flag">🇺🇸</span></div>
       <div class="people">Ben, Retard (Jacob)</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">12:54:23 AM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">12:54:23 AM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
-
     <div class="timezone-card" data-timezone="Europe/Berlin">
-      <div class="card-header">
-        <span class="location">Central European</span>
-        <span class="flag">🇩🇪</span>
-      </div>
+      <div class="card-header"><span class="location">Central European</span><span class="flag">🇩🇪</span></div>
       <div class="people">Shep</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">9:54:23 AM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">9:54:23 AM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
-
     <div class="timezone-card" data-timezone="Australia/Brisbane">
-      <div class="card-header">
-        <span class="location">Australian Time</span>
-        <span class="flag">🇦🇺</span>
-      </div>
+      <div class="card-header"><span class="location">Australian Time</span><span class="flag">🇦🇺</span></div>
       <div class="people">Ayman, Mitchell, Liam</div>
-      <div class="time-display">
-        <div class="clock">
-          <div class="clock-face">
-            <div class="hand hour-hand"></div>
-            <div class="hand minute-hand"></div>
-            <div class="hand second-hand"></div>
-          </div>
-        </div>
-        <div>
-          <div class="digital-time">5:54:23 PM</div>
-          <div class="date">Monday, July 7, 2025</div>
-        </div>
-      </div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">5:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
     </div>
   </div>
 
@@ -392,9 +304,16 @@
 
     updateClocks();
 
-    // Falling "Your Blocked" Text (behind cards)
+    const fallWords = [
+      "Your Blocked", "Your Blocked", "Your Blocked", "Your Blocked",
+      "Donovan", "Jordyn", "Aaron", "Sal",
+      "Yousef", "Jackson", "Hyper",
+      "Ben", "Retard (Jacob)", "Shep",
+      "Ayman", "Mitchell", "Liam"
+    ];
+
     let fallingCount = 0;
-    const maxFalling = 25;
+    const maxFalling = 20;
 
     function createFallingText() {
       if (fallingCount >= maxFalling) {
@@ -404,15 +323,15 @@
 
       const span = document.createElement('span');
       span.classList.add('falling-text');
-      span.textContent = 'Your Blocked';
+      span.textContent = fallWords[Math.floor(Math.random() * fallWords.length)];
 
       const left = Math.random() * 100;
-      const duration = 5 + Math.random() * 5;
+      const duration = 7 + Math.random() * 3; // Slightly longer duration
       const rotation = Math.floor(Math.random() * 360) - 180;
 
       span.style.left = `${left}vw`;
       span.style.animationDuration = `${duration}s`;
-      span.style.fontSize = `${0.8 + Math.random() * 1.2}rem`;
+      span.style.fontSize = `${0.8 + Math.random() * 1.1}rem`;
       span.style.transform = `rotate(${rotation}deg)`;
 
       document.body.appendChild(span);
@@ -423,7 +342,7 @@
         fallingCount--;
       }, duration * 1000);
 
-      setTimeout(createFallingText, 400 + Math.random() * 600);
+      setTimeout(createFallingText, 250 + Math.random() * 300);
     }
 
     createFallingText();
