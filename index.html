@@ -36,10 +36,6 @@
       position: relative;
     }
 
-    @supports (font-variation-settings: normal) {
-      body { font-family: 'Inter var', -apple-system, BlinkMacSystemFont, sans-serif; }
-    }
-
     header {
       text-align: center;
       margin-bottom: 3rem;
@@ -58,22 +54,12 @@
       letter-spacing: -0.05em;
     }
 
-    .subtitle {
-      color: #94a3b8;
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(300px, 1fr));
-      grid-template-rows: repeat(2, auto);
       gap: 1.5rem;
       max-width: 1200px;
       width: 100%;
-      margin: 0 auto;
-      z-index: 1;
     }
 
     .timezone-card {
@@ -85,6 +71,9 @@
       border: 1px solid var(--glass);
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
     }
 
     .timezone-card:hover {
@@ -179,18 +168,44 @@
       margin-top: 0.5rem;
     }
 
+    .details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 0.5rem;
+    }
+
+    .timezone-card.active .details {
+      max-height: 200px;
+      opacity: 1;
+    }
+
+    .click-hint {
+      position: absolute;
+      bottom: 10px;
+      left: 15px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      transition: opacity 0.3s ease;
+    }
+
+    .timezone-card.active .click-hint {
+      opacity: 0;
+    }
+
     @media (max-width: 1024px) {
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
       body { padding: 1.5rem; }
       h1 { font-size: 2.2rem; }
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
     }
 
     .falling-text {
@@ -224,127 +239,163 @@
 <body>
   <header>
     <h1>The Doods Time Zones</h1>
-    <p class="subtitle"></p>
   </header>
 
   <div class="grid">
-    <div class="timezone-card" data-timezone="America/New_York">
+    <div class="timezone-card" data-timezone="America/New_York" data-group="east">
       <div class="card-header"><span class="location">Eastern Time</span><span class="flag">🇺🇸</span></div>
       <div class="people">Donovan, Jordyn, Aaron, Sal, Lest</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">3:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
-    <div class="timezone-card" data-timezone="Asia/Riyadh">
+
+    <div class="timezone-card" data-timezone="Asia/Riyadh" data-group="arabian">
       <div class="card-header"><span class="location">Arabian Time</span><span class="flag">🇸🇦</span></div>
       <div class="people">Yousef</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">10:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
-    <div class="timezone-card" data-timezone="Europe/London">
+
+    <div class="timezone-card" data-timezone="Europe/London" data-group="uk">
       <div class="card-header"><span class="location">UK Time</span><span class="flag">🇬🇧</span></div>
       <div class="people">Jackson, Hyper</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">8:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
-    <div class="timezone-card" data-timezone="America/Los_Angeles">
+
+    <div class="timezone-card" data-timezone="America/Los_Angeles" data-group="pacific">
       <div class="card-header"><span class="location">Pacific Time</span><span class="flag">🇺🇸</span></div>
       <div class="people">Ben, Retard (Jacob)</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">12:54:23 AM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
-    <div class="timezone-card" data-timezone="Europe/Berlin">
+
+    <div class="timezone-card" data-timezone="Europe/Berlin" data-group="central">
       <div class="card-header"><span class="location">Central European</span><span class="flag">🇩🇪</span></div>
       <div class="people">Shep</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">9:54:23 AM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
-    <div class="timezone-card" data-timezone="Australia/Brisbane">
+
+    <div class="timezone-card" data-timezone="Australia/Brisbane" data-group="australia">
       <div class="card-header"><span class="location">Australian Time</span><span class="flag">🇦🇺</span></div>
       <div class="people">Ayman, Mitchell, Liam</div>
-      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time">5:54:23 PM</div><div class="date">Monday, July 7, 2025</div></div></div>
+      <div class="time-display"><div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div><div><div class="digital-time"></div><div class="date"></div></div></div>
+      <div class="details"></div>
+      <div class="click-hint">Click to see temperature</div>
     </div>
   </div>
 
   <script>
+    // clocks
     function updateClocks() {
       document.querySelectorAll('.timezone-card').forEach(card => {
         const tz = card.dataset.timezone;
         const now = new Date();
         const options = { timeZone: tz };
-
-        const timeStr = now.toLocaleTimeString('en-US', {
-          ...options,
-          hour12: true,
-          hour: 'numeric',
-          minute: '2-digit',
-          second: '2-digit'
-        });
-
-        const dateStr = now.toLocaleDateString('en-US', {
-          ...options,
-          weekday: 'long',
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
-
+        const timeStr = now.toLocaleTimeString('en-US', { ...options, hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit' });
+        const dateStr = now.toLocaleDateString('en-US', { ...options, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         card.querySelector('.digital-time').textContent = timeStr;
         card.querySelector('.date').textContent = dateStr;
-
         const hours = now.toLocaleTimeString('en-US', { ...options, hour: '2-digit', hour12: false }).split(':')[0];
         const minutes = now.getMinutes();
         const seconds = now.getSeconds();
-
         const hourAngle = (360 / 12) * (hours % 12) + (360 / 12) * (minutes / 60);
         const minuteAngle = (360 / 60) * minutes;
         const secondAngle = (360 / 60) * seconds;
-
         card.querySelector('.hour-hand').style.transform = `translateX(-50%) rotate(${hourAngle}deg)`;
         card.querySelector('.minute-hand').style.transform = `translateX(-50%) rotate(${minuteAngle}deg)`;
         card.querySelector('.second-hand').style.transform = `translateX(-50%) rotate(${secondAngle}deg)`;
       });
-
       requestAnimationFrame(updateClocks);
     }
-
     updateClocks();
 
-    const fallWords = [
-      "Your Blocked", "Your Blocked", "Your Blocked", "Your Blocked",
-      "Donovan", "Jordyn", "Aaron", "Sal", "Lest",
-      "Yousef", "Jackson", "Hyper",
-      "Ben", "Retard (Jacob)", "Shep",
-      "Ayman", "Mitchell", "Liam"
-    ];
+    // weather data
+    const cityData = {
+      east: [
+        { name: "Salem, OH", lat: 40.9009, lon: -80.8567 },
+        { name: "Rome, NY", lat: 43.2128, lon: -75.4557 },
+        { name: "Brooklyn, NY", lat: 40.6782, lon: -73.9442 }
+      ],
+      arabian: [
+        { name: "Jeddah, SA", lat: 21.4858, lon: 39.1925 }
+      ],
+      uk: [
+        { name: "Bangor, NI", lat: 54.6539, lon: -5.6724 },
+        { name: "Cardiff, UK", lat: 51.4816, lon: -3.1791 }
+      ],
+      pacific: [
+        { name: "Wenatchee, WA", lat: 47.4235, lon: -120.3103 }
+      ],
+      central: [
+        { name: "Berlin, DE", lat: 52.52, lon: 13.405 }
+      ],
+      australia: [
+        { name: "Sunshine Coast, AU", lat: -26.65, lon: 153.0667 },
+        { name: "Melbourne, AU", lat: -37.8136, lon: 144.9631 }
+      ]
+    };
 
+    async function fetchTemperature(lat, lon) {
+      const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+      const data = await res.json();
+      return data.current_weather ? data.current_weather.temperature : null;
+    }
+
+    async function updateTemperatures() {
+      for (const card of document.querySelectorAll('.timezone-card')) {
+        const group = card.dataset.group;
+        const cities = cityData[group];
+        if (!cities) continue;
+        const details = card.querySelector('.details');
+        let html = "";
+        for (const city of cities) {
+          const tempC = await fetchTemperature(city.lat, city.lon);
+          const tempF = tempC !== null ? (tempC * 9/5 + 32) : null;
+          html += `<p>${city.name}: ${tempC !== null ? tempC.toFixed(1) + "°C / " + tempF.toFixed(1) + "°F" : "N/A"}</p>`;
+        }
+        details.innerHTML = html;
+      }
+    }
+
+    updateTemperatures();
+
+    document.querySelectorAll('.timezone-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+
+    // falling text
+    const fallWords = ["Your Blocked","Your Blocked","Your Blocked","Your Blocked","Donovan","Jordyn","Aaron","Sal","Lest","Yousef","Jackson","Hyper","Ben","Retard (Jacob)","Shep","Ayman","Mitchell","Liam"];
     let fallingCount = 0;
     const maxFalling = 20;
-
     function createFallingText() {
       if (fallingCount >= maxFalling) {
         setTimeout(createFallingText, 500);
         return;
       }
-
       const span = document.createElement('span');
       span.classList.add('falling-text');
       span.textContent = fallWords[Math.floor(Math.random() * fallWords.length)];
-
       const left = Math.random() * 100;
-      const duration = 7 + Math.random() * 3; // Slightly longer duration
+      const duration = 7 + Math.random() * 3;
       const rotation = Math.floor(Math.random() * 360) - 180;
-
       span.style.left = `${left}vw`;
       span.style.animationDuration = `${duration}s`;
       span.style.fontSize = `${0.8 + Math.random() * 1.1}rem`;
       span.style.transform = `rotate(${rotation}deg)`;
-
       document.body.appendChild(span);
       fallingCount++;
-
-      setTimeout(() => {
-        span.remove();
-        fallingCount--;
-      }, duration * 1000);
-
+      setTimeout(() => { span.remove(); fallingCount--; }, duration * 1000);
       setTimeout(createFallingText, 250 + Math.random() * 300);
     }
-
     createFallingText();
   </script>
 </body>
