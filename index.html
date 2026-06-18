@@ -169,7 +169,7 @@ const cityData = {
     uk: [{ name: "Bangor, NI", lat: 54.6539, lon: -5.6724 }],
     pacific: [{ name: "Wenatchee, WA", lat: 47.4235, lon: -120.3103 }],
     central: [{ name: "Berlin, DE", lat: 52.52, lon: 13.405 }],
-    australia: [{ name: "Sunshine Coast, AU", lat: -26.65, lon: 153.0667 }, { name: "Melbourne, AU", lat: -37.8136, lon: 144.9631 }]
+    australia: [{ name: "Sunshine Coast, AU", lat: -26.65, lon: 153.0667 }]
 };
 
 async function fetchTemperature(lat, lon) {
@@ -206,11 +206,7 @@ async function updateDetails() {
             const newsUrl = `https://news.google.com/search?q=${encodeURIComponent(city.name + ' news')}`;
             const liveUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(city.name + ' live news')}`;
             const weatherUrl = weatherLinks[city.name];
-            if (city.name === "Melbourne, AU") {
-                html += `<p>${city.name} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a></p>`;
-            } else {
-                html += `<p>${city.name}: ${tempDisplay} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a> <a href="${weatherUrl}" target="_blank">Weather</a></p>`;
-            }
+            html += `<p>${city.name}: ${tempDisplay} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a> <a href="${weatherUrl}" target="_blank">Weather</a></p>`;
         }
         details.innerHTML = html;
     }
