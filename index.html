@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Doods Time Zones</title>
+    <title>The Ohio Diddlers Trail Jeet Time Zones</title>
     <link rel="icon" type="image/x-icon" href="/channels4_profile.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +36,7 @@
         .timezone-card:hover { transform: translateY(-5px); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3); }
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
         .location { font-weight: 700; font-size: 1.3rem; color: white; }
-        .flag { font-size: 2.2rem; margin-left: 0.5rem; }
+        .flags { font-size: 2.2rem; margin-left: 0.5rem; }
         .people { color: var(--text-secondary); margin-bottom: 1.5rem; font-weight: 500; font-size: 1rem; }
         .time-display { display: flex; align-items: center; gap: 1.5rem; }
         .clock { width: 90px; height: 90px; position: relative; }
@@ -55,20 +55,22 @@
         .click-hint { position: absolute; bottom: 12px; left: 18px; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
         .timezone-card.active .click-hint { opacity: 0; }
         .falling-text { position: fixed; top: -50px; font-size: 1rem; color: rgba(255,255,255,0.15); pointer-events: none; animation: fall linear forwards; white-space: nowrap; z-index: -1; }
-        @keyframes fall { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(720deg); opacity: 0; } }
+        @keyframes fallLeft { 0% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); } 100% { transform: translateY(110vh) translateX(-100px) rotate(720deg); opacity: 0; } }
+        @keyframes fallRight { 0% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); } 100% { transform: translateY(110vh) translateX(100px) rotate(-720deg); opacity: 0; } }
+        @keyframes fallStraight { 0% { opacity: 1; transform: translateY(0) rotate(0deg); } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+        @keyframes fallZigZag { 0% { opacity: 1; transform: translateY(0) translateX(0) rotate(0deg); } 25% { transform: translateY(25vh) translateX(50px) rotate(180deg); } 50% { transform: translateY(50vh) translateX(-30px) rotate(360deg); } 75% { transform: translateY(75vh) translateX(40px) rotate(540deg); } 100% { transform: translateY(110vh) translateX(-20px) rotate(720deg); opacity: 0; } }
     </style>
 </head>
 <body>
 <header>
-    <h1>The Doods Time Zones</h1>
-    <p class="subtitle">Stay connected across the globe with real-time clocks, weather, and local news for your friends' locations.</p>
+    <h1>The Ohio Diddlers Trail Jeet Time Zones</h1>
+    <p class="subtitle">Stay connected across the globe with real-time clocks, weather, and local news for your Trail Jeet' locations.</p>
 </header>
 
 <div class="grid">
-    <!-- All timezone cards unchanged except city links -->
     <div class="timezone-card" data-timezone="America/New_York" data-group="east">
-        <div class="card-header"><span class="location">Eastern Time</span><span class="flag">🇺🇸</span></div>
-        <div class="people">Donovan, Jordyn, Aaron, Sal, Lest</div>
+        <div class="card-header"><span class="location">Eastern Time</span><span class="flags">🇺🇸</span></div>
+        <div class="people">Aaron, Lest, Sheamus</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
         <div><div class="digital-time"></div><div class="date"></div></div></div>
@@ -77,8 +79,8 @@
     </div>
 
     <div class="timezone-card" data-timezone="Asia/Riyadh" data-group="arabian">
-        <div class="card-header"><span class="location">Arabian Time</span><span class="flag">🇸🇦</span></div>
-        <div class="people">Yousef</div>
+        <div class="card-header"><span class="location">Arab / Cyprus Time</span><span class="flags">🇸🇦🇨🇾</span></div>
+        <div class="people">Yousef, Arethon Philip</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
             <div><div class="digital-time"></div><div class="date"></div></div>
@@ -88,8 +90,8 @@
     </div>
 
     <div class="timezone-card" data-timezone="Europe/London" data-group="uk">
-        <div class="card-header"><span class="location">UK Time</span><span class="flag">🇬🇧</span></div>
-        <div class="people">Jackson, Hyper</div>
+        <div class="card-header"><span class="location">UK Time</span><span class="flags">🇬🇧</span></div>
+        <div class="people">Jackson</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
             <div><div class="digital-time"></div><div class="date"></div></div>
@@ -99,8 +101,8 @@
     </div>
 
     <div class="timezone-card" data-timezone="America/Los_Angeles" data-group="pacific">
-        <div class="card-header"><span class="location">Pacific Time</span><span class="flag">🇺🇸</span></div>
-        <div class="people">Ben, Retard (Jacob)</div>
+        <div class="card-header"><span class="location">Pacific Time</span><span class="flags">🇺🇸</span></div>
+        <div class="people">Ben</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
             <div><div class="digital-time"></div><div class="date"></div></div>
@@ -110,7 +112,7 @@
     </div>
 
     <div class="timezone-card" data-timezone="Europe/Berlin" data-group="central">
-        <div class="card-header"><span class="location">Central European</span><span class="flag">🇩🇪</span></div>
+        <div class="card-header"><span class="location">Central European</span><span class="flags">🇩🇪</span></div>
         <div class="people">Shep</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
@@ -121,8 +123,8 @@
     </div>
 
     <div class="timezone-card" data-timezone="Australia/Brisbane" data-group="australia">
-        <div class="card-header"><span class="location">Australian Time</span><span class="flag">🇦🇺</span></div>
-        <div class="people">Ayman, Mitchell, Liam</div>
+        <div class="card-header"><span class="location">Australian Time</span><span class="flags">🇦🇺</span></div>
+        <div class="people">Ayman</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
             <div><div class="digital-time"></div><div class="date"></div></div>
@@ -162,9 +164,9 @@ function updateClocks() {
 updateClocks();
 
 const cityData = {
-    east: [{ name: "Salem, OH", lat: 40.9009, lon: -80.8567 }, { name: "Rome, NY", lat: 43.2128, lon: -75.4557 }, { name: "Brooklyn, NY", lat: 40.6782, lon: -73.9442 }],
-    arabian: [{ name: "Jeddah, SA", lat: 21.4858, lon: 39.1925 }],
-    uk: [{ name: "Bangor, NI", lat: 54.6539, lon: -5.6724 }, { name: "Cardiff, UK", lat: 51.4816, lon: -3.1791 }],
+    east: [{ name: "Rome, NY", lat: 43.2128, lon: -75.4557 }, { name: "Brooklyn, NY", lat: 40.6782, lon: -73.9442 }, { name: "Simpsonville, SC", lat: 34.7371, lon: -82.2543 }],
+    arabian: [{ name: "Jeddah, SA", lat: 21.4858, lon: 39.1925 }, { name: "Deryneia, CY", lat: 35.0583, lon: 33.9603 }],
+    uk: [{ name: "Bangor, NI", lat: 54.6539, lon: -5.6724 }],
     pacific: [{ name: "Wenatchee, WA", lat: 47.4235, lon: -120.3103 }],
     central: [{ name: "Berlin, DE", lat: 52.52, lon: 13.405 }],
     australia: [{ name: "Sunshine Coast, AU", lat: -26.65, lon: 153.0667 }, { name: "Melbourne, AU", lat: -37.8136, lon: 144.9631 }]
@@ -180,16 +182,15 @@ async function fetchTemperature(lat, lon) {
 
 async function updateDetails() {
     const weatherLinks = {
-        "Salem, OH": "https://www.accuweather.com/en/us/salem/44460/weather-forecast/340031?city=salem",
+        "Simpsonville, SC": "https://www.accuweather.com/en/us/simpsonville/29681/weather-forecast/340593?type=place&placename=simpsonville%20sc&postalcode=29680",
         "Rome, NY": "https://www.accuweather.com/en/us/rome/13440/weather-forecast/334623?city=rome",
         "Brooklyn, NY": "https://www.accuweather.com/en/us/brooklyn/11210/weather-forecast/334651?city=brooklyn",
-        "Cardiff, UK": "https://www.accuweather.com/en/gb/cardiff/cf10-3/weather-forecast/327202",
         "Berlin, DE": "https://www.accuweather.com/en/de/berlin/10178/weather-forecast/178087?city=berlin",
         "Sunshine Coast, AU": "https://www.accuweather.com/en/au/kuluin/1-3492210_1_al/weather-forecast/1-3492210_1_al?city=sunshine%20coast",
-        "Melbourne, AU": "https://www.accuweather.com/en/au/melbourne/26216/weather-forecast/26216?city=melbourne",
         "Wenatchee, WA": "https://www.accuweather.com/en/us/wenatchee/98801/weather-forecast/336354",
         "Jeddah, SA": "https://www.accuweather.com/en/sa/jeddah/299429/weather-forecast/299429?city=jeddah",
-        "Bangor, NI": "https://www.accuweather.com/en/gb/bangor/bt20-4/weather-forecast/325027"
+        "Bangor, NI": "https://www.accuweather.com/en/gb/bangor/bt20-4/weather-forecast/325027",
+        "Deryneia, CY": "https://www.accuweather.com/en/cy/dherinia/122486/weather-forecast/122486?type=locality"
     };
 
     for (const card of document.querySelectorAll('.timezone-card')) {
@@ -205,7 +206,11 @@ async function updateDetails() {
             const newsUrl = `https://news.google.com/search?q=${encodeURIComponent(city.name + ' news')}`;
             const liveUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(city.name + ' live news')}`;
             const weatherUrl = weatherLinks[city.name];
-            html += `<p>${city.name}: ${tempDisplay} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a> <a href="${weatherUrl}" target="_blank">Weather</a></p>`;
+            if (city.name === "Melbourne, AU") {
+                html += `<p>${city.name} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a></p>`;
+            } else {
+                html += `<p>${city.name}: ${tempDisplay} <a href="${newsUrl}" target="_blank">Local News</a> <a href="${liveUrl}" target="_blank">Live News</a> <a href="${weatherUrl}" target="_blank">Weather</a></p>`;
+            }
         }
         details.innerHTML = html;
     }
@@ -216,13 +221,14 @@ document.querySelectorAll('.timezone-card').forEach(card => {
     card.addEventListener('click', () => card.classList.toggle('active'));
 });
 
-const fallWords = ["Your Blocked","Your Blocked","Your Blocked","Your Blocked","Donovan","Jordyn","Aaron","Sal","Lest","Yousef","Jackson","Hyper","Ben","Retard (Jacob)","Shep","Ayman","Mitchell","Liam"];
+const fallWords = ["Your Blocked","Your Blocked","Your Blocked","Your Blocked","Trail Jeet","Aaron","Lest","Sheamus","Yousef","Arethon Philip","Jackson","Ben","Shep","Ayman"];
+const fallAnimations = ["fallLeft", "fallRight", "fallStraight", "fallZigZag"];
 let fallingCount = 0, maxFalling = 30;
 function createFallingText() {
     if(fallingCount >= maxFalling){ setTimeout(createFallingText,500); return; }
     const span = document.createElement('span'); span.classList.add('falling-text'); span.textContent = fallWords[Math.floor(Math.random()*fallWords.length)];
-    const left = Math.random()*100; const duration = 8+Math.random()*4; const rotation = Math.floor(Math.random()*360)-180;
-    span.style.left = `${left}vw`; span.style.animationDuration = `${duration}s`; span.style.fontSize = `${0.9+Math.random()*1.2}rem`; span.style.transform = `rotate(${rotation}deg)`;
+    const left = Math.random()*100; const duration = 8+Math.random()*4; const animName = fallAnimations[Math.floor(Math.random()*fallAnimations.length)];
+    span.style.left = `${left}vw`; span.style.animationDuration = `${duration}s`; span.style.animationName = animName; span.style.fontSize = `${0.9+Math.random()*1.2}rem`;
     document.body.appendChild(span); fallingCount++;
     setTimeout(()=>{ span.remove(); fallingCount--; }, duration*1000);
     setTimeout(createFallingText, 200 + Math.random()*400);
@@ -231,5 +237,3 @@ createFallingText();
 </script>
 </body>
 </html>
-
-
