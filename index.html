@@ -66,18 +66,16 @@
     <h1>The Ohio Diddlers Trail Jeet Time Zones</h1>
     <p class="subtitle">Stay connected across the globe with real-time clocks, weather, and local news for your Trail Jeet' locations.</p>
 </header>
-
 <div class="grid">
     <div class="timezone-card" data-timezone="America/New_York" data-group="east">
         <div class="card-header"><span class="location">Eastern Time</span><span class="flags">🇺🇸</span></div>
-        <div class="people">Aaron, Lest, Sheamus</div>
+        <div class="people">Aaron, Lest, Sheamus, Sam, Danny</div>
         <div class="time-display">
             <div class="clock"><div class="clock-face"><div class="hand hour-hand"></div><div class="hand minute-hand"></div><div class="hand second-hand"></div></div></div>
         <div><div class="digital-time"></div><div class="date"></div></div></div>
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
     <div class="timezone-card" data-timezone="Asia/Riyadh" data-group="arabian">
         <div class="card-header"><span class="location">Arab / Cyprus Time</span><span class="flags">🇸🇦🇨🇾</span></div>
         <div class="people">Yousef, Arethon Philip</div>
@@ -88,7 +86,6 @@
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
     <div class="timezone-card" data-timezone="Europe/London" data-group="uk">
         <div class="card-header"><span class="location">UK Time</span><span class="flags">🇬🇧</span></div>
         <div class="people">Jackson</div>
@@ -99,7 +96,6 @@
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
     <div class="timezone-card" data-timezone="America/Los_Angeles" data-group="pacific">
         <div class="card-header"><span class="location">Pacific Time</span><span class="flags">🇺🇸</span></div>
         <div class="people">Ben</div>
@@ -110,7 +106,6 @@
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
     <div class="timezone-card" data-timezone="Europe/Berlin" data-group="central">
         <div class="card-header"><span class="location">Central European</span><span class="flags">🇩🇪</span></div>
         <div class="people">Shep</div>
@@ -121,7 +116,6 @@
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
     <div class="timezone-card" data-timezone="Australia/Brisbane" data-group="australia">
         <div class="card-header"><span class="location">Australian Time</span><span class="flags">🇦🇺</span></div>
         <div class="people">Ayman</div>
@@ -132,9 +126,7 @@
         <div class="details"></div>
         <div class="click-hint">Click to see weather & news</div>
     </div>
-
 </div>
-
 <script>
 function updateClocks() {
     document.querySelectorAll('.timezone-card').forEach(card => {
@@ -145,16 +137,13 @@ function updateClocks() {
         const dateStr = now.toLocaleDateString('en-US', { ...options, weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
         card.querySelector('.digital-time').textContent = timeStr;
         card.querySelector('.date').textContent = dateStr;
-
         const parts = now.toLocaleTimeString('en-US', { ...options, hour12: false }).split(':');
         const hours = parseInt(parts[0]);
         const minutes = parseInt(parts[1]);
         const seconds = parseInt(parts[2]);
-
         const hourAngle = (360/12)*(hours%12) + (360/12)*(minutes/60);
         const minuteAngle = (360/60)*minutes + (360/60)*(seconds/60);
         const secondAngle = (360/60)*seconds;
-
         card.querySelector('.hour-hand').style.transform = `translateX(-50%) rotate(${hourAngle}deg)`;
         card.querySelector('.minute-hand').style.transform = `translateX(-50%) rotate(${minuteAngle}deg)`;
         card.querySelector('.second-hand').style.transform = `translateX(-50%) rotate(${secondAngle}deg)`;
@@ -164,7 +153,12 @@ function updateClocks() {
 updateClocks();
 
 const cityData = {
-    east: [{ name: "Rome, NY", lat: 43.2128, lon: -75.4557 }, { name: "Brooklyn, NY", lat: 40.6782, lon: -73.9442 }, { name: "Simpsonville, SC", lat: 34.7371, lon: -82.2543 }],
+    east: [
+        { name: "Rome, NY", lat: 43.2128, lon: -75.4557 }, 
+        { name: "Brooklyn, NY", lat: 40.6782, lon: -73.9442 }, 
+        { name: "Simpsonville, SC", lat: 34.7371, lon: -82.2543 },
+        { name: "Petoskey, MI", lat: 45.3733, lon: -84.9553 }
+    ],
     arabian: [{ name: "Jeddah, SA", lat: 21.4858, lon: 39.1925 }, { name: "Deryneia, CY", lat: 35.0583, lon: 33.9603 }],
     uk: [{ name: "Bangor, NI", lat: 54.6539, lon: -5.6724 }],
     pacific: [{ name: "Wenatchee, WA", lat: 47.4235, lon: -120.3103 }],
@@ -190,9 +184,9 @@ async function updateDetails() {
         "Wenatchee, WA": "https://www.accuweather.com/en/us/wenatchee/98801/weather-forecast/336354",
         "Jeddah, SA": "https://www.accuweather.com/en/sa/jeddah/299429/weather-forecast/299429?city=jeddah",
         "Bangor, NI": "https://www.accuweather.com/en/gb/bangor/bt20-4/weather-forecast/325027",
-        "Deryneia, CY": "https://www.accuweather.com/en/cy/dherinia/122486/weather-forecast/122486?type=locality"
+        "Deryneia, CY": "https://www.accuweather.com/en/cy/dherinia/122486/weather-forecast/122486?type=locality",
+        "Petoskey, MI": "https://www.accuweather.com/en/us/petoskey/49770/weather-forecast/333661"
     };
-
     for (const card of document.querySelectorAll('.timezone-card')) {
         const group = card.dataset.group;
         const cities = cityData[group];
@@ -217,19 +211,28 @@ document.querySelectorAll('.timezone-card').forEach(card => {
     card.addEventListener('click', () => card.classList.toggle('active'));
 });
 
-const fallWords = ["Your Blocked","Your Blocked","Your Blocked","Your Blocked","Trail Jeet","Aaron","Lest","Sheamus","Yousef","Arethon Philip","Jackson","Ben","Shep","Ayman"];
+const fallWords = ["Your Blocked","Your Blocked","Your Blocked","Your Blocked","Trail Jeet","Aaron","Lest","Sheamus","Yousef","Arethon Philip","Jackson","Ben","Shep","Ayman","Sam","Danny"];
 const fallAnimations = ["fallLeft", "fallRight", "fallStraight", "fallZigZag"];
 let fallingCount = 0, maxFalling = 30;
+
 function createFallingText() {
     if(fallingCount >= maxFalling){ setTimeout(createFallingText,500); return; }
-    const span = document.createElement('span'); span.classList.add('falling-text'); span.textContent = fallWords[Math.floor(Math.random()*fallWords.length)];
-    const left = Math.random()*100; const duration = 8+Math.random()*4; const animName = fallAnimations[Math.floor(Math.random()*fallAnimations.length)];
-    span.style.left = `${left}vw`; span.style.animationDuration = `${duration}s`; span.style.animationName = animName; span.style.fontSize = `${0.9+Math.random()*1.2}rem`;
-    document.body.appendChild(span); fallingCount++;
-    setTimeout(()=>{ span.remove(); fallingCount--; }, duration*1000);
-    setTimeout(createFallingText, 200 + Math.random()*400);
+    const span = document.createElement('span'); 
+    span.classList.add('falling-text'); 
+    span.textContent = fallWords[Math.floor(Math.random()*fallWords.length)];
+    const left = Math.random()*100; 
+    const duration = 8 + Math.random() * 7;
+    span.style.left = `${left}vw`;
+    span.style.animation = `${fallAnimations[Math.floor(Math.random()*fallAnimations.length)]} ${duration}s linear forwards`;
+    document.body.appendChild(span);
+    fallingCount++;
+    setTimeout(() => {
+        span.remove();
+        fallingCount--;
+    }, duration * 1000);
 }
-createFallingText();
+
+setInterval(createFallingText, 300);
 </script>
 </body>
 </html>
